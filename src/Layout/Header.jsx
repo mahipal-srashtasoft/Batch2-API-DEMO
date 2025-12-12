@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Layout.css"; // custom css
 
 function Header() {
+  const [userLogin, setUserLogin] = useState(false);
 
-  let userLogin = localStorage.getItem("token");
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setUserLogin(true);
+    } else {
+      setUserLogin(false);
+    }
+  }, []);
+
   return (
 <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3 sticky-top">
       <div className="container">
@@ -63,14 +72,26 @@ function Header() {
               </NavLink>
             </li>
 
-            {}<li className="nav-item ms-lg-3">
-              <NavLink to="/login">
-                <button className="btn btn-primary px-4 py-2 rounded-pill">
-                  Login
-                </button>
-              </NavLink>
-            </li>
-
+            {
+              userLogin ? (
+                <li className="nav-item ms-lg-3">
+                    <button className="btn btn-outline-primary px-4 py-2 rounded-pill" onClick={() => {
+                      localStorage.removeItem("token");
+                      window.location.href = "/login";
+                    }}>
+                      Logout
+                    </button>
+                </li>
+              ) : (
+                <li className="nav-item ms-lg-3">
+                  <NavLink to="/login">
+                    <button className="btn btn-primary px-4 py-2 rounded-pill">
+                      Login
+                    </button>
+                  </NavLink>
+                </li>
+              )
+            }
           </ul>
         </div>
       </div>

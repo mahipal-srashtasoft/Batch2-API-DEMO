@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
     let navigate = useNavigate()
-  const [isSignup, setIsSignup] = useState(true);
+  const [isSignup, setIsSignup] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
