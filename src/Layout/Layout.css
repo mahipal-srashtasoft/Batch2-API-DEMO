@@ -1,0 +1,49 @@
+/* Remove default Bootstrap link color */
+.custom-nav-link {
+  position: relative;
+  padding: 8px 14px;
+  font-weight: 500;
+  color: #333 !important;
+  transition: 0.3s ease;
+}
+
+/* Hover effect */
+.custom-nav-link:hover {
+  color: #0d6efd !important;
+}
+
+/* Active navlink */
+.custom-nav-link.active {
+  color: #0d6efd !important;
+  font-weight: 600;
+}
+
+/* Animated underline */
+.custom-nav-link.active::after,
+.custom-nav-link:hover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 2px;
+  width: 100%;
+  background-color: #0d6efd;
+  border-radius: 50px;
+  animation: slide 0.3s ease forwards;
+}
+
+@keyframes slide {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Mobile spacing */
+@media (max-width: 991px) {
+  .custom-nav-link {
+    margin: 5px 0;
+  }
+}
